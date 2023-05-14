@@ -31,22 +31,14 @@ class AuthController extends GetxController {
     required String email,
     required String password,
   }) {
-    print('USER LOGIN STARTTT');
     FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email, password: password)
         .then((value) {
-      print('VVVVVVVVVVVVVVV$value');
       uID = value.user!.uid;
-      print('UUUUUUUUUUUUUUU$uID');
-    }).catchError((error) {
-      print('wrong shit $error');
-    });
-    print('USER LOGIN END');
-    print('UUUUUUUUUUUUUUU$uID');
+    }).catchError((error) {});
   }
 
   void getUserName() async {
-    print('USERRRRRRRRR $uID');
     FirebaseFirestore.instance.collection('users').doc(uID).get().then((value) {
       final data = value.data();
       userName = data!['name'];
