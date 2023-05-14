@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "874102702277",
+    "project_id": "etamen-a2b4f",
+    "storage_bucket": "etamen-a2b4f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:874102702277:android:ec2d54f3f322365f6030ac",
+        "android_client_info": {
+          "package_name": "com.example.etamen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "874102702277-ig200c8iqvo7vtlm61v24m0sfr4lvrki.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiMz4axn4f2gweSV9EJ_RW5W3SStlT9-4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "874102702277-ig200c8iqvo7vtlm61v24m0sfr4lvrki.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
