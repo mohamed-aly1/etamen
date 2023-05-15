@@ -12,9 +12,9 @@ class SignIn extends StatelessWidget {
   final AuthController c = Get.put(AuthController());
   var emailAddress;
   var password;
-  var obsc = true;
+
   GlobalKey<FormState> formk = new GlobalKey<FormState>();
-  var passicon = FontAwesomeIcons.eye;
+
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
   @override
@@ -68,20 +68,24 @@ class SignIn extends StatelessWidget {
                       SizedBox(
                         height: 10,
                       ),
-                      defaultTextField(
-                        obscureText: obsc,
-                        controller: passwordController,
-                        validateFun: (String? val) {
-                          if (val!.isEmpty) {
-                            return "Must not be empty";
-                          }
-                        },
-                        hintText: 'Password',
-                        suffixIcon: IconButton(
-                          icon: Icon(passicon),
-                          iconSize: 20,
-                          color: Theme.of(context).primaryColor,
-                          onPressed: () {},
+                      Obx(
+                        () => defaultTextField(
+                          obscureText: obsc.value,
+                          controller: passwordController,
+                          validateFun: (String? val) {
+                            if (val!.isEmpty) {
+                              return "Must not be empty";
+                            }
+                          },
+                          hintText: 'Password',
+                          suffixIcon: IconButton(
+                            icon: Icon(passicon),
+                            iconSize: 20,
+                            color: Theme.of(context).primaryColor,
+                            onPressed: () {
+                              c.passIcon();
+                            },
+                          ),
                         ),
                       ),
                       SizedBox(
@@ -101,11 +105,6 @@ class SignIn extends StatelessWidget {
                                       email: emailController.text,
                                       password: passwordController.text,
                                     );
-                                    c.getUser();
-                                    // CacheHelper.saveData(
-                                    //     key: 'uID', value: uID).then((value) => null);
-                                    Navigator.of(context)
-                                        .pushReplacementNamed("HomeLayout");
                                   } else {}
                                   ;
                                 },

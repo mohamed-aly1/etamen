@@ -2,6 +2,7 @@ import 'package:etamen/controllers/auth_controller.dart';
 import 'package:etamen/modules/members.dart';
 import 'package:etamen/modules/main_screen.dart';
 import 'package:etamen/modules/notifications.dart';
+import 'package:etamen/shared/components/constants.dart';
 import 'package:flutter/material.dart';
 
 class HomeLayout extends StatefulWidget {
@@ -23,11 +24,9 @@ class _HomeLayoutState extends State<HomeLayout> {
     return Scaffold(
       backgroundColor: Color.fromRGBO(255, 255, 255, 1),
       appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.black),
-        elevation: 0,
-        backgroundColor: Colors.white,
         title: Text(
-          "${userModel?.name}",
+          "${userModel!.name}",
+          
           style: TextStyle(color: Colors.black, fontSize: 20),
           textAlign: TextAlign.center,
         ),
@@ -43,7 +42,7 @@ class _HomeLayoutState extends State<HomeLayout> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
-                  "Mohamed Aly",
+                  "${userModel!.name}",
                   style: TextStyle(color: Colors.black, fontSize: 20),
                   textAlign: TextAlign.center,
                 ),

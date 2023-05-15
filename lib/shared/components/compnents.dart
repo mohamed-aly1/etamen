@@ -50,6 +50,7 @@ Widget defaultTextField({
   bool obscureText = false,
   bool readOnly = false,
   TextAlign textAlign = TextAlign.start,
+  double fontSize = 16,
 }) =>
     Container(
       width: width,
@@ -70,7 +71,7 @@ Widget defaultTextField({
           prefixIcon: prefixIcon,
           hintStyle: TextStyle(
             color: Colors.black,
-            fontSize: 16,
+            fontSize: fontSize,
           ),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide.none,
@@ -81,7 +82,7 @@ Widget defaultTextField({
             borderRadius: BorderRadius.circular(20.0),
           ),
         ),
-        style: TextStyle(color: Colors.black),
+        style: TextStyle(color: Colors.black, fontSize: fontSize),
       ),
     );
 

@@ -1,4 +1,9 @@
+import 'package:etamen/modules/recent_cares.dart';
+import 'package:etamen/modules/top%20nurses.dart';
+import 'package:etamen/modules/visit_notes.dart';
+import 'package:etamen/shared/components/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../shared/components/compnents.dart';
@@ -46,7 +51,7 @@ class _MainScreenState extends State<MainScreen> {
                               context: context,
                               initialDate: DateTime.now(),
                               firstDate: DateTime.now(),
-                              lastDate: DateTime.parse("2030-12-31"))
+                              lastDate: DateTime.parse("2090-12-31"))
                           .then((value) {
                         fromdateController.text =
                             DateFormat.yMMMd().format(value!);
@@ -77,7 +82,7 @@ class _MainScreenState extends State<MainScreen> {
                             context: context,
                             initialDate: DateTime.now(),
                             firstDate: DateTime.now(),
-                            lastDate: DateTime.parse("2030-12-31"))
+                            lastDate: DateTime.parse("2090-12-31"))
                         .then((value) {
                       todateController.text = DateFormat.yMMMd().format(value!);
                     }).catchError((error) {
@@ -100,6 +105,11 @@ class _MainScreenState extends State<MainScreen> {
           defaultButton(
               width: 210,
               onpressedfunction: () {
+                reservationdateFrom = fromdateController.text;
+                reservationdateTo = todateController.text;
+                print(reservationdateFrom);
+                print(reservationdateTo);
+
                 Navigator.of(context).pushNamed("Reservation");
               },
               title: "Search Nurses"),
@@ -121,7 +131,9 @@ class _MainScreenState extends State<MainScreen> {
                           borderRadius: BorderRadius.circular(20)),
                       child: IconButton(
                         iconSize: 30,
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(VisitNotes());
+                        },
                         icon: Icon(
                           Icons.note_alt_outlined,
                           color: Theme.of(context).primaryColor,
@@ -151,7 +163,9 @@ class _MainScreenState extends State<MainScreen> {
                           borderRadius: BorderRadius.circular(20)),
                       child: IconButton(
                         iconSize: 30,
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(TopNurses());
+                        },
                         icon: Icon(
                           Icons.medical_information_outlined,
                           color: Theme.of(context).primaryColor,
@@ -181,7 +195,9 @@ class _MainScreenState extends State<MainScreen> {
                           borderRadius: BorderRadius.circular(20)),
                       child: IconButton(
                         iconSize: 30,
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(History());
+                        },
                         icon: Icon(
                           Icons.watch_later_outlined,
                           color: Theme.of(context).primaryColor,

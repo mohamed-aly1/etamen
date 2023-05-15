@@ -13,9 +13,8 @@ class Signup extends StatelessWidget {
   var passwordupController = TextEditingController();
   var phoneNoController = TextEditingController();
 
-  var obsc = true;
   GlobalKey<FormState> formk = new GlobalKey<FormState>();
-  var passicon = FontAwesomeIcons.eye;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,28 +80,24 @@ class Signup extends StatelessWidget {
                         SizedBox(
                           height: 10,
                         ),
-                        defaultTextField(
-                          obscureText: obsc,
-                          controller: passwordupController,
-                          validateFun: (String? val) {
-                            if (val!.isEmpty) {
-                              return "Must not be empty";
-                            }
-                          },
-                          hintText: 'Password',
-                          suffixIcon: IconButton(
-                            icon: Icon(passicon),
-                            iconSize: 20,
-                            color: Theme.of(context).primaryColor,
-                            onPressed: () {
-                              // setState(() {
-                              //   bool tick(o) => !o;
-                              //   obsc = tick(obsc);
-                              //   passicon == FontAwesomeIcons.eye
-                              //       ? passicon = FontAwesomeIcons.eyeSlash
-                              //       : passicon = FontAwesomeIcons.eye;
-                              // });
+                        Obx(
+                          () => defaultTextField(
+                            obscureText: obsc.value,
+                            controller: passwordupController,
+                            validateFun: (String? val) {
+                              if (val!.isEmpty) {
+                                return "Must not be empty";
+                              }
                             },
+                            hintText: 'Password',
+                            suffixIcon: IconButton(
+                              icon: Icon(passicon),
+                              iconSize: 20,
+                              color: Theme.of(context).primaryColor,
+                              onPressed: () {
+                                c.passIcon();
+                              },
+                            ),
                           ),
                         ),
                         SizedBox(

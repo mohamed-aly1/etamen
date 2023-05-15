@@ -1,4 +1,5 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:etamen/layout/home_layout.dart';
 import 'package:etamen/signing/signup.dart';
 import 'package:etamen/welcome.dart';
 import 'package:flutter/material.dart';

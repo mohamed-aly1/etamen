@@ -1,4 +1,5 @@
 import 'package:etamen/shared/components/compnents.dart';
+import 'package:etamen/shared/components/constants.dart';
 import 'package:flutter/material.dart';
 
 class AvailableNurses extends StatefulWidget {
@@ -33,7 +34,7 @@ class _AvailableNursesState extends State<AvailableNurses> {
                 SizedBox(
                   width: 5,
                 ),
-                Text("21/03/2023"),
+                Text(reservationdateFrom),
                 SizedBox(
                   width: 5,
                 ),
@@ -44,7 +45,7 @@ class _AvailableNursesState extends State<AvailableNurses> {
                 SizedBox(
                   width: 5,
                 ),
-                Text("26/03/2023"),
+                Text(reservationdateTo),
               ],
             ),
             SizedBox(

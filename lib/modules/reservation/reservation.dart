@@ -1,4 +1,5 @@
 import 'package:etamen/shared/components/compnents.dart';
+import 'package:etamen/shared/components/constants.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:geolocator/geolocator.dart';
@@ -6,6 +7,18 @@ import 'package:geocoding/geocoding.dart';
 import 'package:intl/intl.dart';
 
 List<String> list = <String>['Male', 'Female'];
+Map<String, dynamic> reservationInfo = {
+  'time': 'time',
+  'dateFrom': reservationdateFrom,
+  'dateTo': reservationdateTo,
+  'location': 'location',
+  'visitPurpose': 'visitPurpose',
+  'patientName': 'patientName',
+  'patientAge': 'patientAge',
+  'medicalHistory': 'medicalHistory',
+  'notes': 'notes',
+  'gender': 'gender',
+};
 
 class Reservation extends StatefulWidget {
   static String visitPurpose = "";
@@ -93,7 +106,7 @@ class _ReservationState extends State<Reservation> {
               children: [
                 Row(
                   children: [
-                    Text("21/03/2023"),
+                    Text(reservationdateFrom),
                     SizedBox(
                       width: 10,
                     ),
@@ -104,7 +117,7 @@ class _ReservationState extends State<Reservation> {
                     SizedBox(
                       width: 10,
                     ),
-                    Text("26/03/2023"),
+                    Text(reservationdateTo),
                   ],
                 ),
                 SizedBox(
@@ -274,14 +287,17 @@ class _ReservationState extends State<Reservation> {
                     onpressedfunction: () {
                       var formd = reserveformKey.currentState;
                       if (formd!.validate()) {
-                        Reservation.location = locationController.text;
-                        Reservation.visitPurpose = visitPurposeController.text;
-                        Reservation.patientName = patientNameController.text;
-                        Reservation.sex = dropdownValue;
-                        Reservation.age = ageController.text;
-                        Reservation.medicalHistory =
+                        reservationInfo['location'] = locationController.text;
+                        reservationInfo['visitPurpose'] =
+                            visitPurposeController.text;
+                        reservationInfo['patientName'] =
+                            patientNameController.text;
+                        reservationInfo['gender'] = dropdownValue;
+                        reservationInfo['patientAge'] = ageController.text;
+                        reservationInfo['medicalHistory'] =
                             medicalHistoryController.text;
-                        Reservation.notes = notesController.text;
+                        reservationInfo['notes'] = notesController.text;
+                        print(reservationInfo);
                         Navigator.of(context).pushNamed("AvailableNurses");
                       }
                     },
