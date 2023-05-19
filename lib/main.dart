@@ -4,7 +4,7 @@ import 'package:etamen/layout/home_layout.dart';
 import 'package:etamen/modules/reservation/available_nurses.dart';
 import 'package:etamen/modules/reservation/reservation.dart';
 import 'package:etamen/modules/reservation/resv_confirmation.dart';
-import 'package:etamen/modules/reservation/resv_datails.dart';
+import 'package:etamen/modules/reservation/checkout.dart';
 import 'package:etamen/shared/network/local/cach_helper.dart';
 import 'package:etamen/signing/signup.dart';
 import 'package:etamen/signupsplash.dart';
@@ -75,7 +75,13 @@ class MyApp extends StatelessWidget {
               color: Color.fromARGB(255, 0, 0, 0),
             ),
             bodyLarge: TextStyle(
-              fontSize: 25.0,
+              fontSize: 35.0,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'leagueSpartan',
+              color: Color(0xFFF06D57),
+            ),
+            displaySmall: TextStyle(
+              fontSize: 20.0,
               fontWeight: FontWeight.bold,
               fontFamily: 'leagueSpartan',
               color: Color(0xFFF06D57),
@@ -91,7 +97,7 @@ class MyApp extends StatelessWidget {
         "HomeLayout": (context) => HomeLayout(),
         "SignUpSplash": (context) => SignUpSplash(),
         "Reservation": (context) => Reservation(),
-        "ResvDetails": (context) => ResvDetails(),
+        "ResvDetails": (context) => Checkout(),
         "AvailableNurses": (context) => AvailableNurses(),
         "ResvConfirmation": (context) => ResvConfirmation(),
         "Completed": (context) => Completed(),

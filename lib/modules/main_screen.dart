@@ -1,3 +1,4 @@
+import 'package:etamen/controllers/reservation_controller.dart';
 import 'package:etamen/modules/recent_cares.dart';
 import 'package:etamen/modules/top%20nurses.dart';
 import 'package:etamen/modules/visit_notes.dart';
@@ -16,9 +17,17 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  final ReservationController c = Get.put(ReservationController());
   var fromdateController = TextEditingController();
   var todateController = TextEditingController();
   int reservationRadio = 0;
+  DateTime? fromdate;
+  DateTime? todate;
+  int daysBetween(DateTime from, DateTime to) {
+    from = DateTime(from.year, from.month, from.day);
+    to = DateTime(to.year, to.month, to.day);
+    return (to.difference(from).inHours / 24).round();
+  }
 
   void _reservationRadioFun(int? value) {
     setState(() {
@@ -53,6 +62,7 @@ class _MainScreenState extends State<MainScreen> {
                               firstDate: DateTime.now(),
                               lastDate: DateTime.parse("2090-12-31"))
                           .then((value) {
+                        fromdate = value;
                         fromdateController.text =
                             DateFormat.yMMMd().format(value!);
                       }).catchError((error) {
@@ -84,6 +94,7 @@ class _MainScreenState extends State<MainScreen> {
                             firstDate: DateTime.now(),
                             lastDate: DateTime.parse("2090-12-31"))
                         .then((value) {
+                      todate = value;
                       todateController.text = DateFormat.yMMMd().format(value!);
                     }).catchError((error) {
                       print("error is $error");
@@ -109,7 +120,10 @@ class _MainScreenState extends State<MainScreen> {
                 reservationdateTo = todateController.text;
                 print(reservationdateFrom);
                 print(reservationdateTo);
+                c.getNurses();
 
+                reservedDays = daysBetween(fromdate!, todate!);
+                print('$reservedDays');
                 Navigator.of(context).pushNamed("Reservation");
               },
               title: "Search Nurses"),

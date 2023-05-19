@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../controllers/auth_controller.dart';
+import '../layout/home_layout.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 
 class SignIn extends StatelessWidget {
@@ -105,6 +106,7 @@ class SignIn extends StatelessWidget {
                                       email: emailController.text,
                                       password: passwordController.text,
                                     );
+                                    
                                   } else {}
                                   ;
                                 },

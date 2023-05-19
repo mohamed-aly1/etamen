@@ -1,3 +1,4 @@
+import 'package:etamen/controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -51,10 +52,12 @@ Widget defaultTextField({
   bool readOnly = false,
   TextAlign textAlign = TextAlign.start,
   double fontSize = 16,
+  String? initialvalue,
 }) =>
     Container(
       width: width,
       child: TextFormField(
+        initialValue: initialvalue,
         textAlign: textAlign,
         maxLines: maxlines,
         readOnly: readOnly,

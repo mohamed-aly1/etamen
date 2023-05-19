@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:etamen/layout/home_layout.dart';
 import 'package:etamen/models/user_model.dart';
@@ -49,15 +51,12 @@ class AuthController extends GetxController {
     FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email, password: password)
         .then((value) {
-          uID = value.user!.uid;
-          print(' IDDDDDDD $uID');
-          getUser();
-          
-        })
-        .then((_) => Get.to(HomeLayout()))
-        .catchError((error) {
-          print(error);
-        });
+      uID = value.user!.uid;
+      print(' IDDDDDDD $uID');
+      getUser();
+    }).catchError((error) {
+      print(error);
+    });
   }
 
   // void getUserName() async {
@@ -86,9 +85,15 @@ class AuthController extends GetxController {
   }
 
   void getUser() {
-    FirebaseFirestore.instance.collection('users').doc(uID).get().then((value) {
-      userModel = UserModel.fromJson(value.data()!);
-      print('GETTTT USEREEEEE${value.data()}');
-    }).catchError((error) {});
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(uID)
+        .get()
+        .then((value) {
+          userModel = UserModel.fromJson(value.data()!);
+          print('GETTTT USEREEEEE${value.data()}');
+        })
+        .then((value) => Get.to(HomeLayout()))
+        .catchError((error) {});
   }
 }

@@ -1,7 +1,9 @@
 import 'package:etamen/modules/reservation/reservation.dart';
-import 'package:etamen/modules/reservation/resv_datails.dart';
+import 'package:etamen/modules/reservation/checkout.dart';
 import 'package:etamen/shared/components/compnents.dart';
+import 'package:etamen/shared/components/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ResvConfirmation extends StatefulWidget {
   const ResvConfirmation({super.key});
@@ -11,13 +13,19 @@ class ResvConfirmation extends StatefulWidget {
 }
 
 class _ResvConfirmationState extends State<ResvConfirmation> {
-  String location = Reservation.location;
-  String visitPurpose = Reservation.visitPurpose;
-  String name = Reservation.patientName;
-  String sex = Reservation.sex;
-  String age = Reservation.age;
-  String medicalHistory = Reservation.medicalHistory;
-  String notes = Reservation.notes;
+  String? location = userReservation.location;
+  String? visitPurpose = userReservation.visitPurpose;
+  String? name = userReservation.patientName;
+  String? sex = userReservation.gender;
+  String? age = userReservation.patientAge;
+  String? medicalHistory = userReservation.medicalHistory;
+  String? notes = userReservation.notes;
+  String? nurseName = userReservation.selectedNurse!.name;
+  double? nurserating = userReservation.selectedNurse!.rating;
+  int? nursePrice = userReservation.selectedNurse!.price;
+  String? fromDate = userReservation.dateFrom;
+  String? toDate = userReservation.dateTo;
+  int totalPrice = userReservation.selectedNurse!.price! * reservedDays!;
   Payment? _character = Payment.cash;
 
   @override
@@ -40,7 +48,7 @@ class _ResvConfirmationState extends State<ResvConfirmation> {
           child: Column(children: [
             Container(
               width: 350,
-              height: 284,
+              height: 100,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20.0),
                 color: Colors.grey[200],
@@ -60,7 +68,10 @@ class _ResvConfirmationState extends State<ResvConfirmation> {
                         backgroundColor: Color.fromARGB(255, 255, 255, 255),
                         radius: 40,
                         backgroundImage: AssetImage("assets/nurse1.png")),
-                    title: Text("Samuel Jaggy"),
+                    title: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(nurseName!),
+                    ),
                     subtitle: Row(
                       children: [
                         Icon(
@@ -70,10 +81,15 @@ class _ResvConfirmationState extends State<ResvConfirmation> {
                         SizedBox(
                           width: 5,
                         ),
-                        Text(
-                          "4.5",
-                          style: TextStyle(color: Colors.black),
-                        ),
+                        nurserating == null
+                            ? Text(
+                                'N/A',
+                                style: TextStyle(color: Colors.black),
+                              )
+                            : Text(
+                                '$nurserating',
+                                style: TextStyle(color: Colors.black),
+                              ),
                       ],
                     ),
                   ),
@@ -84,45 +100,6 @@ class _ResvConfirmationState extends State<ResvConfirmation> {
                     thickness: 1,
                     color: Colors.grey[500],
                   ),
-                  ListTile(
-                    isThreeLine: true,
-                    tileColor: Colors.grey[300],
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    leading: SizedBox(),
-                    title: Text("Ahmed Ali"),
-                    subtitle: Text(
-                        "He is professional and he deals \nwith everything easily."),
-                    trailing: Column(
-                      children: [
-                        Icon(
-                          Icons.star,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                        Text("4.5"),
-                      ],
-                    ),
-                  ),
-                  ListTile(
-                    isThreeLine: true,
-                    tileColor: Colors.grey[300],
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    leading: SizedBox(),
-                    title: Text("Amr Samir"),
-                    subtitle: Text("The Best Ever."),
-                    trailing: Column(
-                      children: [
-                        Icon(
-                          Icons.star,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                        Text("5.0"),
-                      ],
-                    ),
-                  ),
                 ],
               ),
             ),
@@ -131,7 +108,7 @@ class _ResvConfirmationState extends State<ResvConfirmation> {
             ),
             Container(
               width: 350,
-              height: 360,
+              height: 300,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20.0),
                 color: Colors.grey[200],
@@ -150,7 +127,7 @@ class _ResvConfirmationState extends State<ResvConfirmation> {
                         SizedBox(
                           width: 5,
                         ),
-                        Text("21/03/2023"),
+                        Text(fromDate!),
                         SizedBox(
                           width: 5,
                         ),
@@ -161,7 +138,7 @@ class _ResvConfirmationState extends State<ResvConfirmation> {
                         SizedBox(
                           width: 5,
                         ),
-                        Text("26/03/2023"),
+                        Text(toDate!),
                       ],
                     ),
                     SizedBox(
@@ -206,91 +183,81 @@ class _ResvConfirmationState extends State<ResvConfirmation> {
                     Row(
                       children: [
                         Icon(
-                          Icons.repeat,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text("Once a Day"),
-                        SizedBox(
-                          width: 5,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Row(
-                      children: [
-                        Icon(
                           Icons.payments_outlined,
                           color: Theme.of(context).primaryColor,
                         ),
                         SizedBox(
                           width: 5,
                         ),
-                        Text("500 EGP"),
-                        SizedBox(
-                          width: 5,
-                        ),
+                        Text("$nursePrice X $reservedDays = $totalPrice LE"),
                       ],
                     ),
-                    Container(
-                      width: 200,
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "$name",
-                              style: Theme.of(context).textTheme.titleMedium,
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Text("$age Years Old"),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Text("$sex"),
-                            Divider(
-                              height: 10,
-                              thickness: 1,
-                              color: Colors.grey[500],
-                            ),
-                            Text(
-                              "$visitPurpose",
-                              style: Theme.of(context).textTheme.titleMedium,
-                            ),
-                            Divider(
-                              height: 10,
-                              thickness: 1,
-                              color: Colors.grey[500],
-                            ),
-                            notes.isEmpty
-                                ? Text(
-                                    "No visit notes",
-                                    style:
-                                        Theme.of(context).textTheme.bodyMedium,
-                                  )
-                                : Text(
-                                    "$notes",
-                                    style:
-                                        Theme.of(context).textTheme.bodyMedium,
-                                  ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Divider(
-                              height: 10,
-                              thickness: 1,
-                              color: Colors.grey[500],
-                            ),
-                            Text(
-                              "$medicalHistory",
-                              style: Theme.of(context).textTheme.bodyMedium,
-                            ),
-                          ]),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: Container(
+                        width: 200,
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "$name",
+                                style: Theme.of(context).textTheme.titleMedium,
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Text("$age Years Old"),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Text("$sex"),
+                              Divider(
+                                height: 10,
+                                thickness: 1,
+                                color: Colors.grey[500],
+                              ),
+                              Text(
+                                "$visitPurpose",
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: Theme.of(context).textTheme.titleMedium,
+                              ),
+                              Divider(
+                                height: 10,
+                                thickness: 1,
+                                color: Colors.grey[500],
+                              ),
+                              notes == null
+                                  ? Text(
+                                      "No visit notes",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium,
+                                    )
+                                  : Text(
+                                      "$notes",
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium,
+                                    ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Divider(
+                                height: 10,
+                                thickness: 1,
+                                color: Colors.grey[500],
+                              ),
+                              Text(
+                                "$medicalHistory",
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: Theme.of(context).textTheme.bodyMedium,
+                              ),
+                            ]),
+                      ),
                     ),
                   ],
                 ),
@@ -301,7 +268,9 @@ class _ResvConfirmationState extends State<ResvConfirmation> {
             ),
             defaultButton(
                 onpressedfunction: () {
-                  Navigator.of(context).pushReplacementNamed("ResvDetails");
+                  
+                  totalCost = totalPrice;
+                  Get.to(Checkout());
                 },
                 title: "Checkout")
           ]),

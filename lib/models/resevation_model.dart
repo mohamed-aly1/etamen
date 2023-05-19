@@ -1,3 +1,5 @@
+import 'package:etamen/models/nurse_model.dart';
+
 class ReservationModel {
   String? dateFrom;
   String? dateTo;
@@ -9,6 +11,8 @@ class ReservationModel {
   String? medicalHistory;
   String? gender;
   String? notes;
+  int? cost;
+  NurseModel? selectedNurse;
 
   ReservationModel({
     this.dateFrom,
@@ -21,6 +25,8 @@ class ReservationModel {
     this.medicalHistory,
     this.gender,
     this.notes,
+    this.selectedNurse,
+    this.cost,
   });
 
   ReservationModel.fromJson(Map<String, dynamic> json) {
@@ -34,6 +40,8 @@ class ReservationModel {
     medicalHistory = json['medicalHistory'];
     gender = json['gender'];
     notes = json['notes'];
+    selectedNurse = json['selectedNurse'];
+    cost = json['cost'];
   }
 
   Map<String, dynamic> toMap() {
@@ -48,6 +56,8 @@ class ReservationModel {
       'medicalHistory': medicalHistory,
       'gender': gender,
       'notes': notes,
+      'selectedNurse': selectedNurse,
+      'cost': cost,
     };
   }
 }

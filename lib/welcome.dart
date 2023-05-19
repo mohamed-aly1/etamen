@@ -145,7 +145,8 @@ class _WelcomePageState extends State<WelcomePage> {
                                 },
                                 child: Text(
                                   "Sign in",
-                                  style: Theme.of(context).textTheme.bodyLarge,
+                                  style:
+                                      Theme.of(context).textTheme.displaySmall,
                                 ))
                           ],
                         )

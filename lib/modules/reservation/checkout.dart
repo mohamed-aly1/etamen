@@ -1,29 +1,24 @@
+import 'package:etamen/completed.dart';
 import 'package:etamen/modules/reservation/reservation.dart';
 import 'package:etamen/shared/components/compnents.dart';
+import 'package:etamen/shared/components/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class ResvDetails extends StatefulWidget {
-  const ResvDetails({super.key});
+class Checkout extends StatefulWidget {
+  const Checkout({super.key});
 
   @override
-  State<ResvDetails> createState() => _ResvDetailsState();
+  State<Checkout> createState() => _CheckoutState();
 }
 
 enum Payment { card, cash }
 
-class _ResvDetailsState extends State<ResvDetails> {
-  String location = Reservation.location;
-  String visitPurpose = Reservation.visitPurpose;
-  String name = Reservation.patientName;
-  String sex = Reservation.sex;
-  String age = Reservation.age;
-  String medicalHistory = Reservation.medicalHistory;
-  String notes = Reservation.notes;
+class _CheckoutState extends State<Checkout> {
   Payment? _character = Payment.cash;
 
   @override
   Widget build(BuildContext context) {
-    print(notes);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -200,7 +195,7 @@ class _ResvDetailsState extends State<ResvDetails> {
                         width: 130,
                       ),
                       Text(
-                        '560',
+                        '$totalCost LE',
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                     ],
@@ -211,7 +206,7 @@ class _ResvDetailsState extends State<ResvDetails> {
                 ),
                 defaultButton(
                     onpressedfunction: () {
-                      Navigator.of(context).pushReplacementNamed("Completed");
+                      Get.to(Completed());
                     },
                     title: "Reserve")
               ],

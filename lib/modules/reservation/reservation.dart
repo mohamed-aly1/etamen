@@ -1,10 +1,15 @@
+import 'package:etamen/controllers/auth_controller.dart';
+import 'package:etamen/models/resevation_model.dart';
 import 'package:etamen/shared/components/compnents.dart';
 import 'package:etamen/shared/components/constants.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+
+import '../../controllers/reservation_controller.dart';
 
 List<String> list = <String>['Male', 'Female'];
 Map<String, dynamic> reservationInfo = {
@@ -35,6 +40,7 @@ class Reservation extends StatefulWidget {
 }
 
 class _ReservationState extends State<Reservation> {
+  final ReservationController c = Get.put(ReservationController());
   String dropdownValue = list.first;
   bool? services;
   LocationPermission? permission;
@@ -45,7 +51,7 @@ class _ReservationState extends State<Reservation> {
   String street = "";
   String hinttext = "Location";
   var visitPurposeController = TextEditingController();
-  var patientNameController = TextEditingController();
+  var patientNameController = TextEditingController(text: userModel?.name);
   var ageController = TextEditingController();
   var medicalHistoryController = TextEditingController();
   var notesController = TextEditingController();
@@ -297,7 +303,11 @@ class _ReservationState extends State<Reservation> {
                         reservationInfo['medicalHistory'] =
                             medicalHistoryController.text;
                         reservationInfo['notes'] = notesController.text;
-                        print(reservationInfo);
+                        print('Ffklfjsdlikfjldiewjwiuk');
+                        userReservation =
+                            ReservationModel.fromJson(reservationInfo);
+                        print(userReservation.toMap());
+
                         Navigator.of(context).pushNamed("AvailableNurses");
                       }
                     },
