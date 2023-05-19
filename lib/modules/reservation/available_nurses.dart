@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 class AvailableNurses extends StatelessWidget {
   final ReservationController c = Get.put(ReservationController());
   NurseModel selectedNurse = NurseModel();
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

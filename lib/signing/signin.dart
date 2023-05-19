@@ -1,5 +1,6 @@
 import 'package:etamen/shared/components/compnents.dart';
 import 'package:etamen/shared/network/local/cach_helper.dart';
+import 'package:etamen/signing/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -22,11 +23,6 @@ class SignIn extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          iconTheme: IconThemeData(color: Theme.of(context).primaryColor),
-          backgroundColor: Colors.white,
-          elevation: 0,
-        ),
         body: Center(
             child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
@@ -106,11 +102,35 @@ class SignIn extends StatelessWidget {
                                       email: emailController.text,
                                       password: passwordController.text,
                                     );
+                                  } else {
                                     
-                                  } else {}
+                                  }
                                   ;
                                 },
                                 title: "Sign In"),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Don't have an account ?",
+                                  style: TextStyle(
+                                      color: Color(0xFF979797),
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.normal),
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    Get.off(Signup());
+                                  },
+                                  child: Text(
+                                    "Sign Up",
+                                    style: TextStyle(
+                                        decoration: TextDecoration.underline,
+                                        color: Theme.of(context).primaryColor),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ],
                         ),
                       ),

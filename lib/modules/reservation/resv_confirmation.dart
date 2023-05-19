@@ -13,23 +13,14 @@ class ResvConfirmation extends StatefulWidget {
 }
 
 class _ResvConfirmationState extends State<ResvConfirmation> {
-  String? location = userReservation.location;
-  String? visitPurpose = userReservation.visitPurpose;
-  String? name = userReservation.patientName;
-  String? sex = userReservation.gender;
-  String? age = userReservation.patientAge;
-  String? medicalHistory = userReservation.medicalHistory;
-  String? notes = userReservation.notes;
-  String? nurseName = userReservation.selectedNurse!.name;
-  double? nurserating = userReservation.selectedNurse!.rating;
-  int? nursePrice = userReservation.selectedNurse!.price;
-  String? fromDate = userReservation.dateFrom;
-  String? toDate = userReservation.dateTo;
-  int totalPrice = userReservation.selectedNurse!.price! * reservedDays!;
+
+
   Payment? _character = Payment.cash;
 
   @override
   Widget build(BuildContext context) {
+    reservedDays == 0 ? reservedDays = 1 : reservedDays == reservedDays;
+    int totalPrice = userReservation.selectedNurse!.price! * reservedDays!;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -268,7 +259,6 @@ class _ResvConfirmationState extends State<ResvConfirmation> {
             ),
             defaultButton(
                 onpressedfunction: () {
-                  
                   totalCost = totalPrice;
                   Get.to(Checkout());
                 },

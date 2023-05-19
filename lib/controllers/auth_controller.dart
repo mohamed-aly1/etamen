@@ -41,6 +41,7 @@ class AuthController extends GetxController {
       Get.to(HomeLayout());
     }).catchError((error) {
       print(error);
+      return error;
     });
   }
 

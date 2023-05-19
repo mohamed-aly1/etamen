@@ -154,7 +154,7 @@ class Signup extends StatelessWidget {
                                   ),
                                   TextButton(
                                     onPressed: () {
-                                      Get.to(SignIn());
+                                      Get.off(SignIn());
                                     },
                                     child: Text(
                                       "Sign in",
