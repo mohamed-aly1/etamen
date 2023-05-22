@@ -18,4 +18,44 @@ class ReservationController extends GetxController {
       print(error);
     });
   }
+
+  void makeReservation({
+    required String userID,
+    required String time,
+    required String dateFrom,
+    required String dateTo,
+    required String location,
+    required String visitPurpose,
+    required String patientName,
+    required String patientAge,
+    required String medicalHistory,
+    required String gender,
+    required String notes,
+    required String selectedNurseName,
+    required String selectedNurseID,
+    required String cost,
+  }) {
+    FirebaseFirestore.instance
+        .collection('reservations')
+        .doc(userID.toString())
+        .set({
+          'time': time,
+          'dateFrom': dateFrom,
+          'dateTo': dateTo,
+          'location': location,
+          'visitPurpose': visitPurpose,
+          'patientName': patientName,
+          'patientAge': patientAge,
+          'medicalHistory': medicalHistory,
+          'gender': gender,
+          'notes': notes,
+          'selectedNurseName': selectedNurseName,
+          'selectedNurseID': selectedNurseID,
+          'cost': cost,
+        })
+        .then((value) => null)
+        .catchError((error) {
+          print(error);
+        });
+  }
 }

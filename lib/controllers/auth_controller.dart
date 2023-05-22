@@ -59,6 +59,8 @@ class AuthController extends GetxController {
       print(error);
     });
   }
+  
+  
 
   // void getUserName() async {
   //   print('USERRR IDDD $uID');

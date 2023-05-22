@@ -1,4 +1,6 @@
 import 'package:etamen/completed.dart';
+import 'package:etamen/controllers/auth_controller.dart';
+import 'package:etamen/controllers/reservation_controller.dart';
 import 'package:etamen/modules/reservation/reservation.dart';
 import 'package:etamen/shared/components/compnents.dart';
 import 'package:etamen/shared/components/constants.dart';
@@ -15,6 +17,7 @@ class Checkout extends StatefulWidget {
 enum Payment { card, cash }
 
 class _CheckoutState extends State<Checkout> {
+  ReservationController c = ReservationController();
   Payment? _character = Payment.cash;
 
   @override
@@ -206,6 +209,23 @@ class _CheckoutState extends State<Checkout> {
                 ),
                 defaultButton(
                     onpressedfunction: () {
+                      c.makeReservation(
+                          userID: userModel!.uID!,
+                          time: userReservation.time!,
+                          dateFrom: userReservation.dateFrom!,
+                          dateTo: userReservation.dateTo!,
+                          location: userReservation.location!,
+                          visitPurpose: userReservation.visitPurpose!,
+                          patientName: userReservation.patientName!,
+                          patientAge: userReservation.patientAge!,
+                          medicalHistory: userReservation.medicalHistory!,
+                          gender: userReservation.gender!,
+                          notes: userReservation.notes!,
+                          selectedNurseName:
+                              userReservation.selectedNurse!.name!,
+                          selectedNurseID:
+                              userReservation.selectedNurse!.nurseID.toString(),
+                          cost: userReservation.cost.toString());
                       Get.to(Completed());
                     },
                     title: "Reserve")
