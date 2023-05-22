@@ -26,7 +26,6 @@ class _HomeLayoutState extends State<HomeLayout> {
       appBar: AppBar(
         title: Text(
           "${userModel!.name}",
-          
           style: TextStyle(color: Colors.black, fontSize: 20),
           textAlign: TextAlign.center,
         ),

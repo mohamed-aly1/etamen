@@ -12,7 +12,7 @@ class SignUpSplash extends StatelessWidget {
     return AnimatedSplashScreen(
       splash: Center(child: Image.asset('assets/signupsplash.png')),
       backgroundColor: Color.fromARGB(255, 0, 0, 0),
-      nextScreen: HomeLayout(),
+      nextScreen: SignIn(),
       splashIconSize: 250,
       duration: 1500,
       splashTransition: SplashTransition.fadeTransition,

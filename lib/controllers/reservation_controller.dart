@@ -37,7 +37,7 @@ class ReservationController extends GetxController {
   }) {
     FirebaseFirestore.instance
         .collection('reservations')
-        .doc(userID.toString())
+        .doc()
         .set({
           'time': time,
           'dateFrom': dateFrom,
