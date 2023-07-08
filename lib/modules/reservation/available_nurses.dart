@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 class AvailableNurses extends StatelessWidget {
   final ReservationController c = Get.put(ReservationController());
   NurseModel selectedNurse = NurseModel();
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,7 +89,7 @@ class AvailableNurses extends StatelessWidget {
                               userReservation.selectedNurse!.price! *
                                   reservedDays!;
 
-                                ///// RESERVATION MODEL COMPLETED HERE   
+                          ///// RESERVATION MODEL COMPLETED HERE
                           print(userReservation.selectedNurse!.toMap());
                           Get.to(ResvConfirmation());
                         },
@@ -133,7 +133,7 @@ class AvailableNurses extends StatelessWidget {
                             ),
                             Icon(
                               Icons.arrow_circle_right,
-                              size: 32,
+                              size: 30,
                               color: Theme.of(context).primaryColor,
                             )
                           ],

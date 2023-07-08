@@ -109,6 +109,8 @@ class _ReservationState extends State<Reservation> {
           child: Form(
             key: reserveformKey,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Row(
                   children: [
@@ -143,6 +145,8 @@ class _ReservationState extends State<Reservation> {
                   height: 10,
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(
                       width: 5,
@@ -163,7 +167,7 @@ class _ReservationState extends State<Reservation> {
                     ),
                     defaultButton(
                         size: 16,
-                        width: 150,
+                        width: 154,
                         onpressedfunction: () {
                           setState(() {
                             read = false;

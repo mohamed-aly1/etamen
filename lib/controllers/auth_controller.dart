@@ -55,12 +55,11 @@ class AuthController extends GetxController {
       uID = value.user!.uid;
       print(' IDDDDDDD $uID');
       getUser();
+      Get.to(HomeLayout());
     }).catchError((error) {
       print(error);
     });
   }
-  
-  
 
   // void getUserName() async {
   //   print('USERRR IDDD $uID');

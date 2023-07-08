@@ -137,7 +137,7 @@ class Completed extends StatelessWidget {
                             SizedBox(
                               width: 5,
                             ),
-                            Text("$location"),
+                            Expanded(child: Text("$location")),
                             SizedBox(
                               width: 5,
                             ),

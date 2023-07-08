@@ -39,11 +39,13 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(
             height: 20,
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
                 padding:
@@ -54,7 +56,7 @@ class _MainScreenState extends State<MainScreen> {
                     defaultTextField(
                       width: 160,
                       prefixIcon: const Icon(Icons.date_range),
-                      keyboardType: TextInputType.datetime,
+                      readOnly: true,
                       controller: fromdateController,
                       onTapFun: () async => showDatePicker(
                               context: context,
@@ -86,7 +88,7 @@ class _MainScreenState extends State<MainScreen> {
                     prefixIcon: Icon(
                       Icons.date_range,
                     ),
-                    keyboardType: TextInputType.datetime,
+                    readOnly: true,
                     controller: todateController,
                     onTapFun: () async => showDatePicker(
                             context: context,
@@ -240,8 +242,8 @@ class _MainScreenState extends State<MainScreen> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                     child: Container(
-                      width: 300,
-                      height: 115,
+                      width: 310,
+                      height: 125,
                       child: Padding(
                         padding: const EdgeInsets.all(20.0),
                         child: Row(children: [
@@ -301,7 +303,7 @@ class _MainScreenState extends State<MainScreen> {
                               Padding(
                                 padding: const EdgeInsets.all(6.0),
                                 child: Container(
-                                  width: 260,
+                                  width: 280,
                                   height: 114,
                                   decoration: BoxDecoration(
                                       color: Color(0xFFEBEBEB),
@@ -322,9 +324,12 @@ class _MainScreenState extends State<MainScreen> {
                                             SizedBox(
                                               width: 5,
                                             ),
-                                            Text(
-                                              'Nurse : ${userReservation.selectedNurse!.name}',
-                                              style: TextStyle(fontSize: 14),
+                                            Expanded(
+                                              child: Text(
+                                                'Nurse : ${userReservation.selectedNurse!.name}',
+                                                overflow: TextOverflow.ellipsis,
+                                                style: TextStyle(fontSize: 14),
+                                              ),
                                             ),
                                           ],
                                         ),

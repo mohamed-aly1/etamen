@@ -13,8 +13,6 @@ class ResvConfirmation extends StatefulWidget {
 }
 
 class _ResvConfirmationState extends State<ResvConfirmation> {
-
-
   Payment? _character = Payment.cash;
 
   @override
@@ -49,39 +47,41 @@ class _ResvConfirmationState extends State<ResvConfirmation> {
                   SizedBox(
                     height: 10,
                   ),
-                  ListTile(
-                    isThreeLine: true,
-                    tileColor: Colors.grey[300],
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    leading: CircleAvatar(
-                        backgroundColor: Color.fromARGB(255, 255, 255, 255),
-                        radius: 40,
-                        backgroundImage: AssetImage("assets/nurse1.png")),
-                    title: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(nurseName!),
-                    ),
-                    subtitle: Row(
-                      children: [
-                        Icon(
-                          Icons.star,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        nurserating == null
-                            ? Text(
-                                'N/A',
-                                style: TextStyle(color: Colors.black),
-                              )
-                            : Text(
-                                '$nurserating',
-                                style: TextStyle(color: Colors.black),
-                              ),
-                      ],
+                  Expanded(
+                    child: ListTile(
+                      isThreeLine: true,
+                      tileColor: Colors.grey[300],
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      leading: CircleAvatar(
+                          backgroundColor: Color.fromARGB(255, 255, 255, 255),
+                          radius: 40,
+                          backgroundImage: AssetImage("assets/nurse1.png")),
+                      title: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(nurseName!),
+                      ),
+                      subtitle: Row(
+                        children: [
+                          Icon(
+                            Icons.star,
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          nurserating == null
+                              ? Text(
+                                  'N/A',
+                                  style: TextStyle(color: Colors.black),
+                                )
+                              : Text(
+                                  '$nurserating',
+                                  style: TextStyle(color: Colors.black),
+                                ),
+                        ],
+                      ),
                     ),
                   ),
                   Divider(
@@ -162,7 +162,7 @@ class _ResvConfirmationState extends State<ResvConfirmation> {
                         SizedBox(
                           width: 5,
                         ),
-                        Text("$location"),
+                        Expanded(child: Text("$location")),
                         SizedBox(
                           width: 5,
                         ),
